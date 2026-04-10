@@ -1,0 +1,33 @@
+Inspection ID,ROUTINE-20260410-191608-926918
+Created at,2026-04-10 19:16:08.926939
+Operator,Nagao Ryoto
+Model,00-NPX2-200
+Pipette number,#17
+Mode,routine
+Z factor,1.004
+Overall status,ROUTINE CHECK COMPLETE
+Final use decision,ROUTINE REVIEW ONLY / NOT OFFICIAL
+Comment,
+
+Checklist
+Item,Status
+Distilled water confirmed,YES
+Premium Tip confirmed,YES
+Balance calibrated confirmed,YES
+2–3 hour temperature equilibration confirmed,YES
+Room temperature 20–25°C confirmed,YES
+No direct airflow confirmed,YES
+Vessel with lid prepared confirmed,YES
+
+Point results summary
+Point,Vs (μL),Mean (μL),es (μL),es %,|es| %,SD (μL),CV %,AC limit %,CV limit %,Decision
+1,200.0,201.5249,N/A,0.7624,0.7624,N/A,0.0737,0.8000,0.2000,PASS
+
+Point 1 replicate details
+Replicate,Mass (mg),Corrected volume (μL),Photo
+1,200.63,201.4325,Yes
+2,200.92,201.7237,No
+3,200.84,201.6434,No
+4,200.63,201.4325,No
+5,200.59,201.3924,No
+
