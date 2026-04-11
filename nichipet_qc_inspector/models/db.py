@@ -1,6 +1,7 @@
 from datetime import datetime
 import json
 
+import streamlit as st
 from sqlalchemy import (
     Boolean,
     Column,
@@ -13,13 +14,36 @@ from sqlalchemy import (
     Text,
     create_engine,
 )
+from sqlalchemy.engine import URL
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 
-DATABASE_URL = "sqlite:///nichipet_qc_inspector.db"
+Base = declarative_base()
+
+
+def build_database_url():
+    try:
+        pg = st.secrets["connections"]["postgresql"]
+        return URL.create(
+            drivername="postgresql+psycopg2",
+            username=pg["username"],
+            password=pg["password"],
+            host=pg["host"],
+            port=int(pg["port"]),
+            database=pg["database"],
+            query={"sslmode": "require"},
+        )
+    except Exception:
+        return "sqlite:///nichipet_qc_inspector.db"
+
+
+DATABASE_URL = build_database_url()
+
+connect_args = {"check_same_thread": False} if str(DATABASE_URL).startswith("sqlite") else {}
 
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"check_same_thread": False},
+    connect_args=connect_args,
+    pool_pre_ping=True,
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
