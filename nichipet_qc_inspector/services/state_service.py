@@ -14,6 +14,22 @@ def init_app_state():
     st.session_state.setdefault("routine_reset_nonce", 0)
     st.session_state.setdefault("nav_override", None)
 
+    if "lang" not in st.session_state:
+        st.session_state["lang"] = "en"
+    if "drafts" not in st.session_state:
+        st.session_state["drafts"] = {}
+    if "last_result" not in st.session_state:
+        st.session_state["last_result"] = None
+    if "selected_history_id" not in st.session_state:
+        st.session_state["selected_history_id"] = None
+
+    if "logged_in" not in st.session_state:
+        st.session_state["logged_in"] = False
+    if "username" not in st.session_state:
+        st.session_state["username"] = ""
+    if "role" not in st.session_state:
+        st.session_state["role"] = ""    
+
 def store_draft(draft_key, draft):
     st.session_state[draft_key] = draft
 
