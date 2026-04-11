@@ -1,5 +1,6 @@
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import joinedload
+
 from nichipet_qc_inspector.models.db import (
     Inspection,
     InspectionPoint,
@@ -10,6 +11,7 @@ from nichipet_qc_inspector.models.db import (
     Operator,
     ReadingPhoto,
 )
+
 
 class InspectionRepository:
     def __init__(self, session):
@@ -46,7 +48,9 @@ class InspectionRepository:
             mode=result.metadata.mode,
             z_factor=result.z_factor,
             overall_status=overall_status,
-            official_decision_available=(False if getattr(result.metadata, "is_demo", False) else result.official_decision_available),
+            official_decision_available=(
+                False if getattr(result.metadata, "is_demo", False) else result.official_decision_available
+            ),
             non_compliant_conditions=result.non_compliant_conditions,
             low_volume_note=result.low_volume_note,
         )
